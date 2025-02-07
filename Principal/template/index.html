@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizzaria - Pedido Online</title>
+    <style>
+        /* Estilos básicos para melhor visualização */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+        }
+        .section {
+            margin-right: 50px;
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 200px;
+            padding: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+        }
+        table {
+            margin-top: 30px;
+            width: 600px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Faça Seu Pedido</h1>
+    <div class="container">
+        <!-- Região de Cadastro do Cliente -->
+        <div class="section">
+            <h2>Cadastro do Cliente</h2>
+            <form action="/clientes/novo" method="post">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required>
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required>
+
+                <button type="submit">Cadastrar</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+
+        <!-- Região de Seleção da Pizza -->
+        <div class="section">
+            <h2>Escolha Sua Pizza</h2>
+            <form action="/pedidos/novo" method="post">
+                <label for="sabor">Sabor:</label>
+                <select id="sabor" name="sabor" required>
+                    <option value="">Selecione o sabor</option>
+                    <option value="Mussarela">Mussarela</option>
+                    <option value="Calabresa">Calabresa</option>
+                    <option value="Portuguesa">Portuguesa</option>
+                    <!-- Adicione outros sabores conforme necessário -->
+                </select>
+
+                <label for="tamanho">Tamanho:</label>
+                <select id="tamanho" name="tamanho" required>
+                    <option value="">Selecione o tamanho</option>
+                    <option value="Pequena">Pequena</option>
+                    <option value="Média">Média</option>
+                    <option value="Grande">Grande</option>
+                </select>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabela Informativa de Preços -->
+    <h2>Tabela de Preços</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Quantidade</th>
+                <th>Sabor</th>
+                <th>Tamanho</th>
+                <th>Preço (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Mussarela</td>
+                <td>Pequena</td>
+                <td>20,00</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Calabresa</td>
+                <td>Média</td>
+                <td>30,00</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Portuguesa</td>
+                <td>Grande</td>
+                <td>40,00</td>
+            </tr>
+            <!-- Adicione outras opções conforme necessário -->
+        </tbody>
+    </table>
+</body>
+</html>
