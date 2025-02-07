@@ -1,0 +1,35 @@
+@startuml Pizzaria
+
+class Cliente {
+  +nome: String
+  +endereco: String
+  +telefone: String
+  +bairro: String
+  +fazerCadastro()
+  +fazerPedido()
+  +fazerPagamento()
+  +confirmarPedido()
+}
+
+class Atendente {
+  +numPedido: int
+  +sabor: String
+  +tamanho: String
+  +quantidade: double
+  +preco: double
+  +getPedido()
+  +getPagamento()
+}
+
+class Sistema {
+    +idPedido: string
+    +validarPagamento()
+    +registrarPedido()
+    +prepararPedido()
+    +entregarPedido()
+}
+
+Cliente "1" -- "*" Atendente
+Atendente "*" -- "1" Sistema
+
+@enduml

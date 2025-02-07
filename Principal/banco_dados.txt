@@ -1,0 +1,51 @@
+-- Criando tabelas para o diagrama relacional
+
+CREATE TABLE Cliente (
+    id_cliente SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    telefone VARCHAR(20)
+);
+
+CREATE TABLE Pedido (
+    id_pedido SERIAL PRIMARY KEY,
+    id_cliente INT REFERENCES Cliente(id_cliente),
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Pagamento (
+    id_pagamento SERIAL PRIMARY KEY,
+    id_pedido INT REFERENCES Pedido(id_pedido),
+    metodo_pagamento VARCHAR(50), -- 'Cartão', 'Dinheiro', 'Pix'
+    status_pagamento VARCHAR(20) -- 'Aprovado', 'Pendente', 'Falha'
+);
+
+CREATE TABLE Desconto (
+    id_desconto SERIAL PRIMARY KEY,
+    id_pagamento INT REFERENCES Pagamento(id_pagamento),
+    valor DECIMAL(10,2)
+);
+
+CREATE TABLE Atendente (
+    id_atendente SERIAL PRIMARY KEY,
+    nome VARCHAR(100)
+);
+
+CREATE TABLE RegistroPedido (
+    id_registro SERIAL PRIMARY KEY,
+    id_pedido INT REFERENCES Pedido(id_pedido),
+    id_atendente INT REFERENCES Atendente(id_atendente)
+);
+
+CREATE TABLE ValidacaoPagamento (
+    id_validacao SERIAL PRIMARY KEY,
+    id_pagamento INT REFERENCES Pagamento(id_pagamento),
+    id_atendente INT REFERENCES Atendente(id_atendente),
+    resultado VARCHAR(20) -- 'Sucesso' ou 'Falha'
+);
+
+-- Se o pagamento falhar, um novo pagamento pode ser necessário
+CREATE TABLE NovoPagamento (
+    id_novo_pagamento SERIAL PRIMARY KEY,
+    id_pagamento_original INT REFERENCES Pagamento(id_pagamento),
+    id_pagamento_novo INT REFERENCES Pagamento(id_pagamento)
+);
